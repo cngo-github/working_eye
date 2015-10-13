@@ -1,0 +1,98 @@
+%
+%  $Description: Author guidelines and sample document in LaTeX 2.09$ 
+%
+%  $Author: ienne $
+%  $Date: 1995/09/15 15:20:59 $
+%  $Revision: 1.4 $
+%
+
+\documentclass[times, 10pt,twocolumn]{article}
+
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{latex8}
+\usepackage{times}
+
+\newcommand{\projname}{Polyglot}
+\newcommand{\projnameA}{Polyglot-A}
+\newcommand{\projnameB}{Polyglot-B}
+
+%\documentstyle[times,art10,twocolumn,latex8]{article}
+
+%------------------------------------------------------------------------- 
+% take the % away on next line to produce the final camera-ready version 
+\pagestyle{empty}
+
+%------------------------------------------------------------------------- 
+\begin{document}
+
+\title{\projname: Feature Location Using Doc2Vec}
+
+\author{Chuong Ngo\\
+The College of William and Mary\\
+chngo@email.wm.edu
+}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+   The ABSTRACT is to be in fully-justified italicized text, at the top 
+   of the left-hand column, below the author and affiliation 
+   information. Use the word ``Abstract'' as the title, in 12-point 
+   Times, boldface type, centered relative to the column, initially 
+   capitalized. The abstract is to be in 10-point, single-spaced type. 
+   The abstract may be up to 3 inches (7.62 cm) long. Leave two blank 
+   lines after the Abstract, then begin the main text. 
+\end{abstract}
+
+%------------------------------------------------------------------------- 
+\Section{Introduction}
+
+\textbf{TODO} 
+
+%------------------------------------------------------------------------- 
+\Section{Background}
+
+\textbf{TODO} 
+
+\input{related}
+\input{methodology}
+
+%------------------------------------------------------------------------- 
+\nocite{dit2013integrating,
+	antoniol2006feature,
+	poshyvanyk2006combining,
+	wilde1992locating,
+	biggerstaff1994program,
+	eisenbarth2003locating,
+	wilde1995software,
+	salah2004hierarchy,
+	antoniol2005feature,
+	chen2000case,
+	ottenstein1984program,
+	horwitz1990interprocedural,
+	horwitz1992use,
+	marcus2004information,
+	mcmillan2011portfolio,
+	allamanis2015suggesting,
+	allamanis2015bimodal,
+	kiros2014multimodal,
+	maddison2014structured,
+	mikolov2013efficient,
+	mnih2007three,
+	mnih2013learning,
+	hindle2012naturalness,
+	mnih2012fast,
+	bird2009natural,
+	porter1980algorithm,
+	manning2014stanford,
+	jconwellcorenlp,
+	le2014distributed,
+	rehureklrec
+}
+\bibliographystyle{latex8}
+\bibliography{latex8}
+
+\end{document}
+

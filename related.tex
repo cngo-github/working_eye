@@ -1,0 +1,86 @@
+\Section{Related Works}
+\label{sec:related}
+
+\SubSection{Related Works in Feature Location}
+
+Wilde et al. \cite{wilde1992locating} and Biggerstaff et al. 
+\cite{biggerstaff1994program} provide a starting point for this work. Wilde
+et al. tackled the problem of feature location with carefully crafted test
+cases. However, their approach has a number of limitations that reduces the
+general practicality of the method. DESIRE, 
+put forward by Biggerstaff et al. utilized a knowledge-based pattern recognizer
+for feature location by looking at suggestive data names, comments, and the 
+program's call graph to
+decipher the structure and function of various components of the program.
+
+Antoniol et al. \cite{antoniol2006feature}
+presented a technique using static analysis of source code and dynamic analysis
+of the program execution to associate features with the relevant subsets of the 
+program source code of object-oriented languages. The subsets of the source 
+code, termed \textit{microarchitectures} by the authors, were identified using 
+static analysis. Execution traces covering a multitude of scenarios related to
+the features of interest are collected and then correlated with the
+\textit{microarchitectures}, allowing for the comparison of different features
+or the same feature across different scenarios. Antoniol et al. based their work
+on that of Eisenbarth et al. \cite{eisenbarth2003locating}, 
+Wilde et al. \cite{wilde1995software}, Salah et. al \cite{salah2004hierarchy},
+and their own previous work \cite{antoniol2005feature}.
+
+Chen et al. \cite{chen2000case} extended the \textit{system dependence graph}
+\cite{horwitz1990interprocedural} \cite{horwitz1992use}, which
+is an extension of the \textit{procedure dependence graph}
+\cite{ottenstein1984program}, and proposed the
+\textit{abstract system dependence graph}. Once their system has created the
+\textit{abstract system dependence graph}, a person must then traverse the graph
+and decide whether each feature is part of the graph using one of four 
+techniques that the authors outlined.
+
+Poshyvanyk et al. \cite{poshyvanyk2006combining} demonstrated a combination of 
+Latent Semantic Indexing (LSI) and Scenerio Based Probablistic (SBP) ranking 
+of events could be used
+to connect bug reports to relevant sections of source code. In fact, compared
+to previous studies of using LSI \cite{marcus2004information} and SBP rankings 
+separately, the combination of the two resulted in
+better precision and recall while eliminating the need for the knowledge-based
+filtering that is usually needed with SBP.
+
+McMillian et al. \cite{mcmillan2011portfolio} presented their system,
+Portfolio, as an improved code search engine. Using PageRank and Spreading
+Activation with textual similiarity at its heart, McMillian et al. showed
+that Portfolio was more capable than the current tools of the time, Google Code
+Search and Koder, at returning relevant results earlier.
+
+Dit et al. \cite{dit2013integrating} explores different combinations of LSI, 
+dynamic analysis of the binary, and the Hyperlinked-Induced Topic Search (HITS)
+and PageRank algorithms for feature location. They concluded that the use
+of LSI, dynamic analysis, and the HITS algorithm together proved to be the
+most effective way to locate features and its component parts.
+
+\SubSection{Related Works for Log-bilinear Language Models in Software Engineering}
+\label{subsec:rel_lbl}
+
+Since log-bilinear language (LBL) models have had a number of successes in 
+regards to modeling natural language \cite{kiros2014multimodal}
+\cite{mikolov2013efficient} \cite{mnih2007three} \cite{mnih2013learning}, their
+application to source code seems like a natural extension. This is possible
+because of the naturalness of software source code, as demonstrated by
+Hindle et al. \cite{hindle2012naturalness} previously. In terms of the direct
+application of log-bilinear models to program source code, Maddison et al.
+\cite{maddison2014structured} extended the work of Mnih et. al
+\cite{mnih2012fast} to capture the structure in source code and showed that the
+use of LBL models yielded large improvements of n-gram and probabilistic
+context free grammar models in predictive capabilities.
+
+Allamanis et al. \cite{allamanis2015suggesting} also used a LBL model and
+subtoken analysis to suggest method and class names that conform to the
+naming conventions seen in the LBL model's training corpus. Allamanis et al.
+\cite{allamanis2015bimodal} also adapted the work of Kiros et al. 
+\cite{kiros2014multimodal} to natural text and source code in order to create
+a mapping between questions posted on
+\href{http://www.stackoverflow.com}{StackOverflow.com} and source code included
+in the answers for those questions. That establishes a link between the natural
+text question and the source code given as the answer, allowing for searches
+with natural language queries yielding relevant source code and source code
+queries yielding the natural language context to which it applies. Because that
+work creates a link between natural language text descriptions and source code,
+it is most related to the work presented in this paper.

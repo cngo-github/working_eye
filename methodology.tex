@@ -1,0 +1,68 @@
+\Section{Methodology}
+\label{sec:method}
+
+Our tool, \textit{\projname}, gives developers insights into the function and 
+features of the methods in their program by issuing natural language queries to 
+it. Not only does this provide a way for new developers to learn about a 
+project, but also helps identify relevant methods for bug reports. Both 
+versions of our tool, \textit{\projnameA} and \textit{\projnameB}, uses LBL 
+models trained on the program source code and commit messages.
+Going forward, \textit{\projname} will refer to both versions and be used when 
+discussing things that are common in both versions or affect both versions.
+
+\textit{\projname} consists of a preprocessing pipeline that feeds into the
+trained LBL model. The following sections will go into further details on both
+the preprocessing pipeline and the LBL model.
+
+\SubSection{Text Preprocessing}
+\label{subsec:method_preproc}
+
+In order to interact with \textit{\projname}, users must format their query as
+a sequence of text tokens. This must also be done to the training corpora prior
+to training the LBL models. The preprocessing pipeline consists of a tokenizer,
+a stop-word filter, and a lemmatizer. For the purposes of this tool, two 
+pipelines will be explored.
+
+The first text preprocessing pipeline is implemented using the
+Natural Language Toolkit (NLTK) \cite{bird2009natural} and consists of the
+toolkit's Regular Expression (RegEx) Tokenizer, lemmatizer, and built in 
+English stopwords filter provided by Porter et al. The RegEx Tokenizer uses 
+white space and punctuation as its delimiters.
+The second pipeline is implemented using the Stanford CoreNLP software suite 
+(CoreNLP) \cite{manning2014stanford} and consists of the suite's PTBTokenizer,
+lemmatizer, and a stopwords filter provided by Jon Conwell
+\cite{jconwellcorenlp}.
+
+The above two pipelines are the basic pipelines used. When processing
+the commit logs, additional processing is done before the commit logs are
+sent through either of the preprocessing pipelines. The commit logs are
+broken up into individual commits and only the file names and method names
+are retained. No additional processing was done on the bug reports. The source
+code was processed by removing programming language keywords and operators.
+The source code identifiers and other compound words are split, and everything
+is stemmed using a Porter Stemmer \cite{porter1980algorithm}. This is the
+same procedure used by Dit et al \cite{dit2013integrating}.
+
+\SubSection{Language Model}
+\label{subsec:method_lm}
+
+The Paragraph2Vec \cite{le2014distributed} implementation provided in the 
+gensim library \cite{rehureklrec} was used to construct the LBL models for
+\textit{\projname}. Going forward, that gensim's Paragraph2Vec implementation 
+will be referred to as Doc2Vec. Doc2Vec was chosen because it allowed for the 
+grouping of multiple tokens and labeling them as a distinct entity, which 
+works well for our goal of representing methods as whole, distinct units. The
+feature vectors were fixed at a size of 1 x 500 each and the context window 
+for learning the
+representations were left at the default 8. A set of models were created using
+the distributed memory learning algorithm (PV-DM) and another set used the 
+distributed bag of words algorithm (PV-DBOW) \cite{le2014distributed}. A
+minimum token appearance count of 5 is be used, meaning that any labels
+appearing less than 5 times in the corpus is not be learned. Negative samples
+numbering 5, 10, and 20 are also used.
+
+The corpus used to train the LBL models is the same one used by Dit et al 
+\cite{dit2013integrating}. \textit{\projnameA} uses two LBL models, one trained
+on the source code, labeled as one unit, and one trained on the commit logs
+cross-referenced with the labeled source code unit. \textit{\projnameB} is
+trained on the source code and commit logs directly, without an intermediary.
